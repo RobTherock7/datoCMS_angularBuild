@@ -67,7 +67,7 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<router-outlet></router-outlet>";
+    __webpack_exports__["default"] = "<mat-toolbar style=\" background: #3f51b5;\r\ncolor: #fff;\">\r\n    <span (click)=\"goToBlogList($event)\" style=\"cursor: pointer;\">MY BLOG</span>\r\n  </mat-toolbar>\r\n<router-outlet ></router-outlet>";
     /***/
   },
 
@@ -107,7 +107,7 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<form class=\"blog-form-container\" (ngSubmit)=\"onSubmit()\" #blogForm=\"ngForm\">\r\n    <h3>Crea il tuo nuovo Blog</h3>\r\n    <mat-form-field class=\"blog-form-field-full\">\r\n      <mat-label>Titolo del Blog</mat-label>\r\n      <input [(ngModel)]=\"model.titoloArticolo\" required name=\"titoloArticolo\" matInput placeholder=\"Titolo\">\r\n    </mat-form-field>\r\n  \r\n    <mat-form-field class=\"blog-form-field-full\">\r\n      <mat-label>Il contenuto del blog</mat-label>\r\n      <textarea [(ngModel)]=\"model.body\" required name=\"body\" matInput [matTextareaAutosize]  placeholder=\"I miei pensieri...\" style=\"min-height: 100px;\"></textarea>\r\n    </mat-form-field>\r\n    <div style=\"display:flex;justify-content: space-between;\">\r\n        <button mat-raised-button color=\"accent\" (click)=\"goToBlogList($event)\">Torna alla lista dei blog</button>\r\n        <button type=\"submit\" mat-raised-button color=\"primary\" [disabled]=\"!blogForm.form.valid\">Crea Blog</button>\r\n    </div>\r\n    <!-- {{diagnostic}} -->\r\n</form>\r\n  \r\n";
+    __webpack_exports__["default"] = "<form class=\"blog-form-container\" (ngSubmit)=\"onSubmit()\" #blogForm=\"ngForm\" >\r\n    <h3>Crea il tuo nuovo Blog</h3>\r\n    <mat-form-field class=\"blog-form-field-full\">\r\n      <mat-label>Titolo del Blog</mat-label>\r\n      <input [(ngModel)]=\"model.titoloArticolo\" required name=\"titoloArticolo\" matInput placeholder=\"Titolo\">\r\n    </mat-form-field>\r\n  \r\n    <mat-form-field class=\"blog-form-field-full\">\r\n      <mat-label>Il contenuto del blog</mat-label>\r\n      <textarea [(ngModel)]=\"model.body\" required name=\"body\" matInput [matTextareaAutosize]  placeholder=\"I miei pensieri...\" style=\"min-height: 100px;\"></textarea>\r\n    </mat-form-field>\r\n    <div style=\"display:flex;justify-content: space-between;\">\r\n        <button mat-raised-button color=\"accent\" (click)=\"goToBlogList($event)\">Torna alla lista dei blog</button>\r\n        <button type=\"submit\" mat-raised-button color=\"primary\" [disabled]=\"!blogForm.form.valid\">Crea Blog</button>\r\n    </div>\r\n    <!-- {{diagnostic}} -->\r\n</form>\r\n  \r\n";
     /***/
   },
 
@@ -127,7 +127,7 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"blog-container\">\r\n  <mat-grid-list cols=\"3\" gutterSize=\"5px\" >\r\n    <mat-grid-tile *ngFor=\"let blog of blogs\">\r\n      <mat-card style=\"width: 90%;\">\r\n        <mat-card-header>\r\n          <img mat-card-avatar src=\"{{blog.immagineCopertina.url}}\"/>\r\n          <mat-card-title>{{blog.titoloArticolo}}</mat-card-title>\r\n          <mat-card-subtitle>{{blog.createdAt | date:'longDate'}}</mat-card-subtitle>\r\n        </mat-card-header>\r\n        <div style=\"display:flex; align-items: center; justify-content: center;height: 300px;\">\r\n          <img mat-card-image src=\"{{blog.immagineCopertina.url}}\" alt=\"{{blog.titoloArticolo}}\" style=\"max-height:300px\">\r\n        </div>\r\n        <mat-card-actions>\r\n          <button mat-raised-button color=\"primary\" (click)=\"goToDetail($event, blog)\">Mostra Dettglio</button>\r\n        </mat-card-actions>\r\n      </mat-card>\r\n    </mat-grid-tile>\r\n  </mat-grid-list>\r\n  <button class=\"sticky-bottom-btn\" mat-fab color=\"primary\" (click)=\"goToNewBlog($event)\">\r\n    <mat-icon>add</mat-icon>\r\n  </button>\r\n</div>";
+    __webpack_exports__["default"] = "<div class=\"blog-container\" >\r\n  <mat-grid-list cols=\"3\" gutterSize=\"5px\" >\r\n    <mat-grid-tile *ngFor=\"let blog of blogs\">\r\n      <mat-card style=\"width: 90%; \">\r\n        <mat-card-header>\r\n          <img mat-card-avatar src=\"{{blog.immagineCopertina.url}}\"/>\r\n          <mat-card-title>{{blog.titoloArticolo}}</mat-card-title>\r\n          <mat-card-subtitle>{{blog.createdAt | date:'longDate'}}</mat-card-subtitle>\r\n        </mat-card-header>\r\n        <div style=\"display:flex; align-items: center; justify-content: center;height: 300px;\">\r\n          <img mat-card-image src=\"{{blog.immagineCopertina.url}}\" alt=\"{{blog.titoloArticolo}}\" style=\"max-height:300px\">\r\n        </div>\r\n        <mat-card-actions>\r\n          <button mat-raised-button color=\"primary\" (click)=\"goToDetail($event, blog)\">Mostra Dettglio</button>\r\n        </mat-card-actions>\r\n      </mat-card>\r\n    </mat-grid-tile>\r\n  </mat-grid-list>\r\n  <button class=\"sticky-bottom-btn\" mat-fab color=\"primary\" (click)=\"goToNewBlog($event)\">\r\n    <mat-icon>add</mat-icon>\r\n  </button>\r\n</div>";
     /***/
   },
 
@@ -837,17 +837,45 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
     /* harmony import */
 
 
-    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    var apollo_angular__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! apollo-angular */
+    "./node_modules/apollo-angular/fesm2015/ngApollo.js");
+    /* harmony import */
+
+
+    var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! @angular/router */
+    "./node_modules/@angular/router/fesm2015/router.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
     /*! @angular/core */
     "./node_modules/@angular/core/fesm2015/core.js");
 
     let AppComponent = class AppComponent {
-      constructor() {
+      constructor(apollo, route, router) {
+        this.apollo = apollo;
+        this.route = route;
+        this.router = router;
         this.title = 'my-blog';
       }
 
+      goToBlogList(event) {
+        this.router.navigate(['']);
+      }
+
     };
-    AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+
+    AppComponent.ctorParameters = () => [{
+      type: apollo_angular__WEBPACK_IMPORTED_MODULE_1__["Apollo"]
+    }, {
+      type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]
+    }, {
+      type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
+    }];
+
+    AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Component"])({
       selector: 'app-root',
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! raw-loader!./app.component.html */
@@ -992,13 +1020,19 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
     var _angular_forms__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(
     /*! @angular/forms */
     "./node_modules/@angular/forms/fesm2015/forms.js");
+    /* harmony import */
+
+
+    var _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(
+    /*! @angular/material/toolbar */
+    "./node_modules/@angular/material/esm2015/toolbar.js");
 
     let AppModule = class AppModule {};
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["NgModule"])({
       declarations: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"], _blog_list_blog_list_component__WEBPACK_IMPORTED_MODULE_7__["BlogListComponent"], _blog_detail_blog_detail_component__WEBPACK_IMPORTED_MODULE_8__["BlogDetailComponent"], _blog_form_blog_form_component__WEBPACK_IMPORTED_MODULE_9__["BlogFormComponent"]],
       imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_4__["AppRoutingModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_6__["BrowserAnimationsModule"], _graphql_module__WEBPACK_IMPORTED_MODULE_10__["GraphQLModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_11__["HttpClientModule"], _angular_material_list__WEBPACK_IMPORTED_MODULE_12__["MatListModule"], _angular_material_card__WEBPACK_IMPORTED_MODULE_13__["MatCardModule"], _angular_material_button__WEBPACK_IMPORTED_MODULE_14__["MatButtonModule"], _angular_material_grid_list__WEBPACK_IMPORTED_MODULE_15__["MatGridListModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_16__["MatIconModule"], _angular_material_input__WEBPACK_IMPORTED_MODULE_17__["MatInputModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_18__["FormsModule"], ngx_markdown__WEBPACK_IMPORTED_MODULE_1__["MarkdownModule"].forRoot(), _angular_common_http__WEBPACK_IMPORTED_MODULE_11__["HttpClientModule"], ngx_markdown__WEBPACK_IMPORTED_MODULE_1__["MarkdownModule"].forRoot({
         loader: _angular_common_http__WEBPACK_IMPORTED_MODULE_11__["HttpClient"]
-      })],
+      }), _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_19__["MatToolbarModule"]],
       // exports : [
       // ],
       providers: [],
