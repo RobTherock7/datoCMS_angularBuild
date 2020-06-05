@@ -87,7 +87,7 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "\r\n<div style=\"width:70%;margin:auto;\" *ngIf=\"ready\">\r\n    <h3 style=\"text-align: center;\">Dettaglio Blog</h3>\r\n    <mat-card>\r\n        <mat-card-header>\r\n          <mat-card-title>{{blog.titoloArticolo}}</mat-card-title>\r\n          <mat-card-subtitle>{{blog.createdAt | date:'longDate'}}</mat-card-subtitle>\r\n        </mat-card-header>\r\n        <div [ngStyle]=\"{'width': blog.immagineCopertina.width + 'px'}\" style=\"margin : auto\">\r\n            <img mat-card-image src=\"{{blog.immagineCopertina.url}}\" alt=\"\" height=\"{{blog.immagineCopertina.height}}\" width=\"{{blog.immagineCopertina.width}}\">\r\n        </div>\r\n        \r\n        <mat-card-content>\r\n          <markdown ngPreserveWhitespaces>{{blog.body}}</markdown>\r\n          <!-- <p>{{blog.body}}</p> -->\r\n        </mat-card-content>\r\n        <mat-card-actions>\r\n            <button mat-raised-button color=\"accent\" (click)=\"goToBlogList($event)\">Torna alla lista dei blog</button>\r\n        </mat-card-actions>\r\n      </mat-card>\r\n</div>\r\n\r\n\r\n";
+    __webpack_exports__["default"] = "\r\n<div style=\"width:70%;margin:auto;\" *ngIf=\"ready\">\r\n    <h3 style=\"text-align: center;\">Dettaglio Blog</h3>\r\n    <mat-card>\r\n        <mat-card-header>\r\n          <mat-card-title>{{blog.titoloArticolo}}</mat-card-title>\r\n          <mat-card-subtitle>{{blog.createdAt | date:'longDate'}}</mat-card-subtitle>\r\n        </mat-card-header>\r\n        <div [ngStyle]=\"{'max-width': blog.immagineCopertina.width + 'px'}\" style=\"margin : auto\">\r\n            <img mat-card-image src=\"{{blog.immagineCopertina.url}}\">\r\n        </div>\r\n        \r\n        <mat-card-content>\r\n          <markdown ngPreserveWhitespaces>{{blog.body}}</markdown>\r\n          <!-- <p>{{blog.body}}</p> -->\r\n        </mat-card-content>\r\n        <mat-card-actions>\r\n            <button mat-raised-button color=\"accent\" (click)=\"goToBlogList($event)\">Torna alla lista dei blog</button>\r\n        </mat-card-actions>\r\n      </mat-card>\r\n</div>\r\n\r\n\r\n";
     /***/
   },
 
@@ -1228,11 +1228,22 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
     var _model_Blog__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
     /*! ../model/Blog */
     "./src/app/model/Blog.ts");
+    /* harmony import */
+
+
+    var datocms_client__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! datocms-client */
+    "./node_modules/datocms-client/dist/client.js");
+    /* harmony import */
+
+
+    var datocms_client__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(datocms_client__WEBPACK_IMPORTED_MODULE_4__);
 
     let BlogFormComponent = class BlogFormComponent {
       constructor(route, router) {
         this.route = route;
         this.router = router;
+        this.client = new datocms_client__WEBPACK_IMPORTED_MODULE_4__["SiteClient"]('b26afeae0277286f8059752d5b4b5c');
         this.model = new _model_Blog__WEBPACK_IMPORTED_MODULE_3__["Blog"]();
       }
 
@@ -1241,11 +1252,23 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
       onSubmit() {
         const articoloNuovo = {
           itemType: '238961',
-          titoloArticolo: this.model.titoloArticolo,
+          titoloArticolo: {
+            en: this.model.titoloArticolo,
+            it: this.model.titoloArticolo
+          },
           mostraCopertina: false,
           immagine_copertina: null,
-          body: this.model.body
+          body: {
+            en: this.model.body,
+            it: this.model.body
+          },
+          luogo: null,
+          attachment: null,
+          articoli_correlati: null
         };
+        console.log("articoloNuovo: " + articoloNuovo);
+        this.client.items.create(articoloNuovo);
+        alert("Articolo creato correttamente.");
       }
 
       get diagnostic() {
