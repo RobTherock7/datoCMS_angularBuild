@@ -9,7 +9,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  const data = _taggedTemplateLiteral(["\nquery getBlogById($blogId: ItemId) {\n  articoloDiBlog(filter: {id: {eq: $blogId}}) {\n    titoloArticolo\n    body\n    createdAt\n    mostraCopertina\n    immagineCopertina {\n      url,\n      height,\n      width\n    }\n  }\n}\n"]);
+  const data = _taggedTemplateLiteral(["\nquery getBlogById($blogId: ItemId) {\n  articoloDiBlog(filter: {id: {eq: $blogId}}) {\n    id\n    titoloArticolo\n    body\n    createdAt\n    updatedAt\n    mostraCopertina\n    immagineCopertina {\n      url,\n      height,\n      width\n    }\n    attachment{\n      url\n      filename\n      format\n      title\n    }\n    articoliCorrelati {\n      id\n      titoloArticolo\n      createdAt\n      immagineCopertina {\n        url\n      }\n    }\n  }\n}\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -87,7 +87,7 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "\r\n<div style=\"width:70%;margin:auto;\" *ngIf=\"ready\">\r\n    <h3 style=\"text-align: center;\">Dettaglio Blog</h3>\r\n    <mat-card>\r\n        <mat-card-header>\r\n          <mat-card-title>{{blog.titoloArticolo}}</mat-card-title>\r\n          <mat-card-subtitle>{{blog.createdAt | date:'longDate'}}</mat-card-subtitle>\r\n        </mat-card-header>\r\n        <div [ngStyle]=\"{'max-width': blog.immagineCopertina.width + 'px'}\" style=\"margin : auto\">\r\n            <img mat-card-image src=\"{{blog.immagineCopertina.url}}\">\r\n        </div>\r\n        \r\n        <mat-card-content>\r\n          <markdown ngPreserveWhitespaces>{{blog.body}}</markdown>\r\n          <!-- <p>{{blog.body}}</p> -->\r\n        </mat-card-content>\r\n      </mat-card>\r\n</div>\r\n<button class=\"sticky-bottom-btn\" mat-raised-button  color=\"primary\" (click)=\"goToBlogList($event)\">\r\n  <mat-icon>keyboard_arrow_left</mat-icon> Back\r\n</button>\r\n\r\n\r\n";
+    __webpack_exports__["default"] = "\r\n<div style=\"width:70%;margin:auto; padding-top: 20px; padding-bottom: 20px;\" *ngIf=\"ready\">\r\n    <mat-card>\r\n        <mat-card-header>\r\n          <mat-card-title>{{blog.titoloArticolo}}</mat-card-title>\r\n          <mat-card-subtitle>{{blog.createdAt | date:'longDate'}}</mat-card-subtitle>\r\n        </mat-card-header>\r\n        <div *ngIf=\"blog.immagineCopertina != null\">\r\n          <div [ngStyle]=\"{'max-width': blog.immagineCopertina.width + 'px'}\" style=\"margin : auto\">\r\n            <img mat-card-image src=\"{{blog.immagineCopertina.url}}\">\r\n          </div>\r\n        </div>\r\n        \r\n        <mat-card-content>\r\n          <!-- <markdown  ngPreserveWhitespaces >{{blog.body}}</markdown> -->\r\n          <markdown [data]=\"blog.body\" ngPreserveWhitespaces></markdown>\r\n          <!-- <div markdown [(data)]=\"body\" (ready)=\"onReady(blog.body)\"> {{body}}</div> -->\r\n         \r\n          <!-- <p>{{blog.body}}</p> -->\r\n        </mat-card-content>\r\n        <mat-accordion class=\"example-headers-align\" *ngIf=\"blog.attachment && blog.attachment.length > 0\">\r\n          <mat-expansion-panel>\r\n            <mat-expansion-panel-header>\r\n              <mat-panel-title>\r\n                Attachments\r\n              </mat-panel-title>\r\n            </mat-expansion-panel-header>\r\n          \r\n              <mat-grid-list cols=\"3\" gutterSize=\"5px\" >\r\n                <mat-grid-tile *ngFor=\"let item of blog.attachment\">\r\n                  <a href=\"{{item.url}}\" target=\"_blank\" class=\"attachment-style\">\r\n                    <div *ngIf=\"item.format==='pdf'\">\r\n                      <span class=\"material-icons big-icon\">\r\n                        picture_as_pdf\r\n                        </span>\r\n                    </div>\r\n                    <div *ngIf=\"item.format==='png' || item.format==='jpg' || item.format==='jpeg'\" style=\"height:145px;display:flex; align-items: center;\">\r\n                      <img mat-card-image src=\"{{item.url}}\">\r\n                    </div>\r\n                    <div *ngIf=\"item.format!=='png' && item.format!=='jpg' && item.format!=='jpeg' && item.format!=='pdf'\">\r\n                      <span class=\"material-icons big-icon\">attach_file</span>\r\n                    </div>\r\n                    <div>{{item.filename}}</div>\r\n                </a>\r\n                </mat-grid-tile>\r\n              </mat-grid-list>\r\n              \r\n          </mat-expansion-panel>\r\n        </mat-accordion>\r\n      </mat-card>\r\n      <mat-card style=\"margin-top:20px\" *ngIf=\"blog.articoliCorrelati && blog.articoliCorrelati.length > 0\">\r\n        <h3>Related Articles</h3>\r\n        <mat-nav-list *ngFor=\"let articolo of blog.articoliCorrelati\">\r\n          <a mat-list-item href=\"javascript:void(0)\" (click)=\"goToDetail($event, articolo)\"  role=\"listitem\">\r\n            <img matListAvatar src=\"{{articolo.immagineCopertina != null ? articolo.immagineCopertina.url : 'assets/img/def_bck.jpg'}}\" alt=\"{{articolo.titoloArticolo}}\">\r\n            <h3 matLine> {{articolo.titoloArticolo}} </h3>\r\n            <p matLine>\r\n              <span>{{articolo.createdAt}}</span>\r\n            </p>\r\n  \r\n          </a>\r\n        </mat-nav-list>\r\n      </mat-card>\r\n</div>\r\n<button class=\"sticky-bottom-btn\" mat-raised-button  color=\"primary\" (click)=\"goToBlogList($event)\">\r\n  <mat-icon>keyboard_arrow_left</mat-icon> Back\r\n</button>\r\n\r\n\r\n";
     /***/
   },
 
@@ -127,7 +127,7 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<span>\r\n    Articolo creato correttamente. \r\n</span>";
+    __webpack_exports__["default"] = "<span>\r\n    New blog article is correctly created\r\n</span>";
     /***/
   },
 
@@ -147,7 +147,7 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"blog-container\" >\r\n  <mat-grid-list cols=\"3\" gutterSize=\"5px\" >\r\n    <mat-grid-tile *ngFor=\"let blog of blogs\">\r\n      <mat-card style=\"width: 90%; \">\r\n        <!-- <mat-card-header>\r\n          <img mat-card-avatar src=\"{{blog.immagineCopertina.url}}\"/> -->\r\n          <mat-card-title style=\"white-space: nowrap;\r\n          overflow: hidden;\r\n          text-overflow: ellipsis;\">{{blog.titoloArticolo}}</mat-card-title>\r\n          <mat-card-subtitle>{{blog.createdAt | date:'longDate'}}</mat-card-subtitle>\r\n        <!-- </mat-card-header> -->\r\n        <div style=\"display:flex; align-items: center; justify-content: center;height: 300px;\">\r\n          <img mat-card-image src=\"{{blog.immagineCopertina.url}}\" alt=\"{{blog.titoloArticolo}}\" style=\"max-height:300px\">\r\n        </div>\r\n        <mat-card-actions>\r\n          <button mat-raised-button color=\"primary\" (click)=\"goToDetail($event, blog)\">Show details</button>\r\n        </mat-card-actions>\r\n      </mat-card>\r\n    </mat-grid-tile>\r\n  </mat-grid-list>\r\n  <button class=\"sticky-bottom-btn\" mat-fab color=\"primary\" (click)=\"goToNewBlog($event)\">\r\n    <mat-icon>add</mat-icon>\r\n  </button>\r\n</div>";
+    __webpack_exports__["default"] = "<div class=\"blog-container\" >\r\n  <mat-grid-list cols=\"3\" gutterSize=\"5px\" >\r\n    <mat-grid-tile *ngFor=\"let blog of blogs\">\r\n      <mat-card style=\"width: 90%; \">\r\n        <!-- <mat-card-header>\r\n          <img mat-card-avatar src=\"{{blog.immagineCopertina.url}}\"/> -->\r\n          <mat-card-title style=\"white-space: nowrap;\r\n          overflow: hidden;\r\n          text-overflow: ellipsis;\">{{blog.titoloArticolo}}</mat-card-title>\r\n          <mat-card-subtitle>{{blog.createdAt | date:'longDate'}}</mat-card-subtitle>\r\n        <!-- </mat-card-header> -->\r\n        <div style=\"display:flex; align-items: center; justify-content: center;height: 300px;\">\r\n            <img mat-card-image src=\"{{blog.immagineCopertina != null ? blog.immagineCopertina.url : 'assets/img/def_bck.jpg'}}\" alt=\"{{blog.titoloArticolo}}\" style=\"max-height:300px\">  \r\n        </div>\r\n        <mat-card-actions>\r\n          <button mat-raised-button color=\"primary\" (click)=\"goToDetail($event, blog)\">Show details</button>\r\n        </mat-card-actions>\r\n      </mat-card>\r\n    </mat-grid-tile>\r\n  </mat-grid-list>\r\n  <button class=\"sticky-bottom-btn\" mat-fab color=\"primary\" (click)=\"goToNewBlog($event)\">\r\n    <mat-icon>add</mat-icon>\r\n  </button>\r\n</div>";
     /***/
   },
 
@@ -803,7 +803,9 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
     }];
     let AppRoutingModule = class AppRoutingModule {};
     AppRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-      imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forRoot(routes)],
+      imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forRoot(routes, {
+        scrollPositionRestoration: 'enabled'
+      })],
       exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
     })], AppRoutingModule);
     /***/
@@ -1037,19 +1039,25 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
     /* harmony import */
 
 
-    var _angular_forms__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(
+    var _angular_material_expansion__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(
+    /*! @angular/material/expansion */
+    "./node_modules/@angular/material/esm2015/expansion.js");
+    /* harmony import */
+
+
+    var _angular_forms__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(
     /*! @angular/forms */
     "./node_modules/@angular/forms/fesm2015/forms.js");
     /* harmony import */
 
 
-    var _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(
+    var _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(
     /*! @angular/material/toolbar */
     "./node_modules/@angular/material/esm2015/toolbar.js");
     /* harmony import */
 
 
-    var _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(
+    var _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(
     /*! @angular/material/snack-bar */
     "./node_modules/@angular/material/esm2015/snack-bar.js");
 
@@ -1057,9 +1065,9 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["NgModule"])({
       declarations: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"], _blog_list_blog_list_component__WEBPACK_IMPORTED_MODULE_7__["BlogListComponent"], _blog_detail_blog_detail_component__WEBPACK_IMPORTED_MODULE_8__["BlogDetailComponent"], _blog_form_blog_form_component__WEBPACK_IMPORTED_MODULE_9__["BlogFormComponent"], _blog_form_blog_form_component__WEBPACK_IMPORTED_MODULE_9__["SnackBarBlogComponent"]],
       entryComponents: [_blog_form_blog_form_component__WEBPACK_IMPORTED_MODULE_9__["SnackBarBlogComponent"]],
-      imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_4__["AppRoutingModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_6__["BrowserAnimationsModule"], _graphql_module__WEBPACK_IMPORTED_MODULE_10__["GraphQLModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_11__["HttpClientModule"], _angular_material_list__WEBPACK_IMPORTED_MODULE_12__["MatListModule"], _angular_material_card__WEBPACK_IMPORTED_MODULE_13__["MatCardModule"], _angular_material_button__WEBPACK_IMPORTED_MODULE_14__["MatButtonModule"], _angular_material_grid_list__WEBPACK_IMPORTED_MODULE_15__["MatGridListModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_16__["MatIconModule"], _angular_material_input__WEBPACK_IMPORTED_MODULE_17__["MatInputModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_18__["FormsModule"], ngx_markdown__WEBPACK_IMPORTED_MODULE_1__["MarkdownModule"].forRoot(), _angular_common_http__WEBPACK_IMPORTED_MODULE_11__["HttpClientModule"], ngx_markdown__WEBPACK_IMPORTED_MODULE_1__["MarkdownModule"].forRoot({
+      imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_4__["AppRoutingModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_6__["BrowserAnimationsModule"], _graphql_module__WEBPACK_IMPORTED_MODULE_10__["GraphQLModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_11__["HttpClientModule"], _angular_material_list__WEBPACK_IMPORTED_MODULE_12__["MatListModule"], _angular_material_card__WEBPACK_IMPORTED_MODULE_13__["MatCardModule"], _angular_material_button__WEBPACK_IMPORTED_MODULE_14__["MatButtonModule"], _angular_material_grid_list__WEBPACK_IMPORTED_MODULE_15__["MatGridListModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_16__["MatIconModule"], _angular_material_input__WEBPACK_IMPORTED_MODULE_17__["MatInputModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_19__["FormsModule"], ngx_markdown__WEBPACK_IMPORTED_MODULE_1__["MarkdownModule"].forRoot(), _angular_common_http__WEBPACK_IMPORTED_MODULE_11__["HttpClientModule"], ngx_markdown__WEBPACK_IMPORTED_MODULE_1__["MarkdownModule"].forRoot({
         loader: _angular_common_http__WEBPACK_IMPORTED_MODULE_11__["HttpClient"]
-      }), _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_19__["MatToolbarModule"], _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_20__["MatSnackBarModule"]],
+      }), _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_20__["MatToolbarModule"], _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_21__["MatSnackBarModule"], _angular_material_expansion__WEBPACK_IMPORTED_MODULE_18__["MatExpansionModule"]],
       // exports : [
       // ],
       providers: [],
@@ -1084,7 +1092,7 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = ".sticky-bottom-btn {\n  position: fixed;\n  bottom: 40px;\n  left: 20px;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYmxvZy1kZXRhaWwvQzovUHJvZ2V0dGkvQWx0cm8vRGF0b0NNUy9kZW1vLWRhdG8tY21zL215LWJsb2cvc3JjL2FwcC9ibG9nLWRldGFpbC9ibG9nLWRldGFpbC5jb21wb25lbnQubGVzcyIsInNyYy9hcHAvYmxvZy1kZXRhaWwvYmxvZy1kZXRhaWwuY29tcG9uZW50Lmxlc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxlQUFBO0VBQ0UsWUFBQTtFQUNBLFVBQUE7QUNDTiIsImZpbGUiOiJzcmMvYXBwL2Jsb2ctZGV0YWlsL2Jsb2ctZGV0YWlsLmNvbXBvbmVudC5sZXNzIiwic291cmNlc0NvbnRlbnQiOlsiLnN0aWNreS1ib3R0b20tYnRue1xuICAgIHBvc2l0aW9uOiBmaXhlZDtcbiAgICAgIGJvdHRvbTogNDBweDtcbiAgICAgIGxlZnQ6IDIwcHg7XG4gIH0iLCIuc3RpY2t5LWJvdHRvbS1idG4ge1xuICBwb3NpdGlvbjogZml4ZWQ7XG4gIGJvdHRvbTogNDBweDtcbiAgbGVmdDogMjBweDtcbn1cbiJdfQ== */";
+    __webpack_exports__["default"] = ".sticky-bottom-btn {\n  position: fixed;\n  bottom: 40px;\n  left: 20px;\n}\n.big-icon {\n  font-size: 10em !important;\n  color: #3f51b5;\n}\n.attachment-style {\n  border: 2px dashed #3f51b5;\n  border-radius: 8px;\n  width: 100%;\n  height: 200px;\n  text-align: center;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYmxvZy1kZXRhaWwvQzovcHJvamVjdHMvZGF0b2Ntcy9teS1ibG9nL3NyYy9hcHAvYmxvZy1kZXRhaWwvYmxvZy1kZXRhaWwuY29tcG9uZW50Lmxlc3MiLCJzcmMvYXBwL2Jsb2ctZGV0YWlsL2Jsb2ctZGV0YWlsLmNvbXBvbmVudC5sZXNzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksZUFBQTtFQUNFLFlBQUE7RUFDQSxVQUFBO0FDQ047QURDRTtFQUNFLDBCQUFBO0VBQ0EsY0FBQTtBQ0NKO0FERUU7RUFDRSwwQkFBQTtFQUNBLGtCQUFBO0VBQ0EsV0FBQTtFQUNBLGFBQUE7RUFDQSxrQkFBQTtBQ0FKIiwiZmlsZSI6InNyYy9hcHAvYmxvZy1kZXRhaWwvYmxvZy1kZXRhaWwuY29tcG9uZW50Lmxlc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuc3RpY2t5LWJvdHRvbS1idG57XG4gICAgcG9zaXRpb246IGZpeGVkO1xuICAgICAgYm90dG9tOiA0MHB4O1xuICAgICAgbGVmdDogMjBweDtcbiAgfVxuICAuYmlnLWljb257XG4gICAgZm9udC1zaXplOjEwZW0gIWltcG9ydGFudDtcbiAgICBjb2xvcjojM2Y1MWI1O1xuXG4gIH1cbiAgLmF0dGFjaG1lbnQtc3R5bGV7XG4gICAgYm9yZGVyOiAycHggZGFzaGVkICMzZjUxYjU7XG4gICAgYm9yZGVyLXJhZGl1czogOHB4O1xuICAgIHdpZHRoOjEwMCU7XG4gICAgaGVpZ2h0OjIwMHB4O1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgfSIsIi5zdGlja3ktYm90dG9tLWJ0biB7XG4gIHBvc2l0aW9uOiBmaXhlZDtcbiAgYm90dG9tOiA0MHB4O1xuICBsZWZ0OiAyMHB4O1xufVxuLmJpZy1pY29uIHtcbiAgZm9udC1zaXplOiAxMGVtICFpbXBvcnRhbnQ7XG4gIGNvbG9yOiAjM2Y1MWI1O1xufVxuLmF0dGFjaG1lbnQtc3R5bGUge1xuICBib3JkZXI6IDJweCBkYXNoZWQgIzNmNTFiNTtcbiAgYm9yZGVyLXJhZGl1czogOHB4O1xuICB3aWR0aDogMTAwJTtcbiAgaGVpZ2h0OiAyMDBweDtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuIl19 */";
     /***/
   },
 
@@ -1152,18 +1160,26 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
       }
 
       ngOnInit() {
-        let id = this.route.snapshot.paramMap.get('id');
-        console.log("id " + id);
-        this.apollo.watchQuery({
-          query: getBlogById,
-          variables: {
-            blogId: id
-          }
-        }).valueChanges.subscribe(result => {
-          console.log(result.data.articoloDiBlog);
-          this.blog = result.data.articoloDiBlog;
-          this.ready = true;
+        this.route.params.subscribe(params => {
+          let id = this.route.snapshot.paramMap.get('id');
+          console.log("id " + id);
+          this.apollo.watchQuery({
+            query: getBlogById,
+            variables: {
+              blogId: id
+            }
+          }).valueChanges.subscribe(result => {
+            console.log(result.data.articoloDiBlog);
+            this.blog = result.data.articoloDiBlog;
+            this.ready = true;
+          });
         });
+      }
+
+      goToDetail(event, blog) {
+        this.router.navigate(['/detail', {
+          id: blog.id
+        }]); //this.ngOnInit();
       }
 
       goToBlogList(event) {
@@ -1208,7 +1224,7 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = ".blog-form-container {\n  min-width: 150px;\n  max-width: 500px;\n  width: 100%;\n  margin: auto;\n}\n.blog-form-field-full {\n  width: 100%;\n}\n.sticky-bottom-btn {\n  position: fixed;\n  bottom: 40px;\n  left: 20px;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYmxvZy1mb3JtL0M6L1Byb2dldHRpL0FsdHJvL0RhdG9DTVMvZGVtby1kYXRvLWNtcy9teS1ibG9nL3NyYy9hcHAvYmxvZy1mb3JtL2Jsb2ctZm9ybS5jb21wb25lbnQubGVzcyIsInNyYy9hcHAvYmxvZy1mb3JtL2Jsb2ctZm9ybS5jb21wb25lbnQubGVzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGdCQUFBO0VBQ0EsZ0JBQUE7RUFDQSxXQUFBO0VBQ0EsWUFBQTtBQ0NKO0FERUU7RUFDRSxXQUFBO0FDQUo7QURFRTtFQUNFLGVBQUE7RUFDRSxZQUFBO0VBQ0EsVUFBQTtBQ0FOIiwiZmlsZSI6InNyYy9hcHAvYmxvZy1mb3JtL2Jsb2ctZm9ybS5jb21wb25lbnQubGVzcyIsInNvdXJjZXNDb250ZW50IjpbIi5ibG9nLWZvcm0tY29udGFpbmVyIHtcbiAgICBtaW4td2lkdGg6IDE1MHB4O1xuICAgIG1heC13aWR0aDogNTAwcHg7XG4gICAgd2lkdGg6IDEwMCU7XG4gICAgbWFyZ2luOmF1dG87XG4gIH1cbiAgXG4gIC5ibG9nLWZvcm0tZmllbGQtZnVsbHtcbiAgICB3aWR0aDogMTAwJTtcbiAgfVxuICAuc3RpY2t5LWJvdHRvbS1idG57XG4gICAgcG9zaXRpb246IGZpeGVkO1xuICAgICAgYm90dG9tOiA0MHB4O1xuICAgICAgbGVmdDogMjBweDtcbiAgfVxuICAiLCIuYmxvZy1mb3JtLWNvbnRhaW5lciB7XG4gIG1pbi13aWR0aDogMTUwcHg7XG4gIG1heC13aWR0aDogNTAwcHg7XG4gIHdpZHRoOiAxMDAlO1xuICBtYXJnaW46IGF1dG87XG59XG4uYmxvZy1mb3JtLWZpZWxkLWZ1bGwge1xuICB3aWR0aDogMTAwJTtcbn1cbi5zdGlja3ktYm90dG9tLWJ0biB7XG4gIHBvc2l0aW9uOiBmaXhlZDtcbiAgYm90dG9tOiA0MHB4O1xuICBsZWZ0OiAyMHB4O1xufVxuIl19 */";
+    __webpack_exports__["default"] = ".blog-form-container {\n  min-width: 150px;\n  max-width: 500px;\n  width: 100%;\n  margin: auto;\n}\n.blog-form-field-full {\n  width: 100%;\n}\n.sticky-bottom-btn {\n  position: fixed;\n  bottom: 40px;\n  left: 20px;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYmxvZy1mb3JtL0M6L3Byb2plY3RzL2RhdG9jbXMvbXktYmxvZy9zcmMvYXBwL2Jsb2ctZm9ybS9ibG9nLWZvcm0uY29tcG9uZW50Lmxlc3MiLCJzcmMvYXBwL2Jsb2ctZm9ybS9ibG9nLWZvcm0uY29tcG9uZW50Lmxlc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxnQkFBQTtFQUNBLGdCQUFBO0VBQ0EsV0FBQTtFQUNBLFlBQUE7QUNDSjtBREVFO0VBQ0UsV0FBQTtBQ0FKO0FERUU7RUFDRSxlQUFBO0VBQ0UsWUFBQTtFQUNBLFVBQUE7QUNBTiIsImZpbGUiOiJzcmMvYXBwL2Jsb2ctZm9ybS9ibG9nLWZvcm0uY29tcG9uZW50Lmxlc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuYmxvZy1mb3JtLWNvbnRhaW5lciB7XG4gICAgbWluLXdpZHRoOiAxNTBweDtcbiAgICBtYXgtd2lkdGg6IDUwMHB4O1xuICAgIHdpZHRoOiAxMDAlO1xuICAgIG1hcmdpbjphdXRvO1xuICB9XG4gIFxuICAuYmxvZy1mb3JtLWZpZWxkLWZ1bGx7XG4gICAgd2lkdGg6IDEwMCU7XG4gIH1cbiAgLnN0aWNreS1ib3R0b20tYnRue1xuICAgIHBvc2l0aW9uOiBmaXhlZDtcbiAgICAgIGJvdHRvbTogNDBweDtcbiAgICAgIGxlZnQ6IDIwcHg7XG4gIH1cbiAgIiwiLmJsb2ctZm9ybS1jb250YWluZXIge1xuICBtaW4td2lkdGg6IDE1MHB4O1xuICBtYXgtd2lkdGg6IDUwMHB4O1xuICB3aWR0aDogMTAwJTtcbiAgbWFyZ2luOiBhdXRvO1xufVxuLmJsb2ctZm9ybS1maWVsZC1mdWxsIHtcbiAgd2lkdGg6IDEwMCU7XG59XG4uc3RpY2t5LWJvdHRvbS1idG4ge1xuICBwb3NpdGlvbjogZml4ZWQ7XG4gIGJvdHRvbTogNDBweDtcbiAgbGVmdDogMjBweDtcbn1cbiJdfQ== */";
     /***/
   },
 
@@ -1372,7 +1388,7 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = ".sticky-bottom-btn {\n  position: fixed;\n  bottom: 40px;\n  right: 20px;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYmxvZy1saXN0L0M6L1Byb2dldHRpL0FsdHJvL0RhdG9DTVMvZGVtby1kYXRvLWNtcy9teS1ibG9nL3NyYy9hcHAvYmxvZy1saXN0L2Jsb2ctbGlzdC5jb21wb25lbnQubGVzcyIsInNyYy9hcHAvYmxvZy1saXN0L2Jsb2ctbGlzdC5jb21wb25lbnQubGVzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGVBQUE7RUFDRSxZQUFBO0VBQ0EsV0FBQTtBQ0NOIiwiZmlsZSI6InNyYy9hcHAvYmxvZy1saXN0L2Jsb2ctbGlzdC5jb21wb25lbnQubGVzcyIsInNvdXJjZXNDb250ZW50IjpbIi5zdGlja3ktYm90dG9tLWJ0bntcbiAgICBwb3NpdGlvbjogZml4ZWQ7XG4gICAgICBib3R0b206IDQwcHg7XG4gICAgICByaWdodDogMjBweDtcbiAgfSIsIi5zdGlja3ktYm90dG9tLWJ0biB7XG4gIHBvc2l0aW9uOiBmaXhlZDtcbiAgYm90dG9tOiA0MHB4O1xuICByaWdodDogMjBweDtcbn1cbiJdfQ== */";
+    __webpack_exports__["default"] = ".sticky-bottom-btn {\n  position: fixed;\n  bottom: 40px;\n  right: 20px;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYmxvZy1saXN0L0M6L3Byb2plY3RzL2RhdG9jbXMvbXktYmxvZy9zcmMvYXBwL2Jsb2ctbGlzdC9ibG9nLWxpc3QuY29tcG9uZW50Lmxlc3MiLCJzcmMvYXBwL2Jsb2ctbGlzdC9ibG9nLWxpc3QuY29tcG9uZW50Lmxlc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxlQUFBO0VBQ0UsWUFBQTtFQUNBLFdBQUE7QUNDTiIsImZpbGUiOiJzcmMvYXBwL2Jsb2ctbGlzdC9ibG9nLWxpc3QuY29tcG9uZW50Lmxlc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuc3RpY2t5LWJvdHRvbS1idG57XG4gICAgcG9zaXRpb246IGZpeGVkO1xuICAgICAgYm90dG9tOiA0MHB4O1xuICAgICAgcmlnaHQ6IDIwcHg7XG4gIH0iLCIuc3RpY2t5LWJvdHRvbS1idG4ge1xuICBwb3NpdGlvbjogZml4ZWQ7XG4gIGJvdHRvbTogNDBweDtcbiAgcmlnaHQ6IDIwcHg7XG59XG4iXX0= */";
     /***/
   },
 
@@ -1727,7 +1743,7 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
   /***/
   function _(module, exports, __webpack_require__) {
     module.exports = __webpack_require__(
-    /*! C:\Progetti\Altro\DatoCMS\demo-dato-cms\my-blog\src\main.ts */
+    /*! C:\projects\datocms\my-blog\src\main.ts */
     "./src/main.ts");
     /***/
   }
